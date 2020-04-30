@@ -292,7 +292,6 @@ namespace ClassLibrary
                 idmovie = (int)reader[0];
                 conn.Close();
 
-                MessageBox.Show(idmovie.ToString());
             }
 
             catch (Exception ex)
