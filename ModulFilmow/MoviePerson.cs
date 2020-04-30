@@ -138,5 +138,26 @@ namespace ModulFilmow
 
             return listMoviePerson;
         }
+
+        public static void DeleteMoviePerson(int idMovie)
+        {
+            string strSQL = "DELETE * FROM MoviePerson Where movie=" + idMovie;
+
+            OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
+
+            OleDbCommand command = new OleDbCommand(strSQL, connection);
+
+            try
+            {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                connection.Close();
+            }
+        }
     }
 }

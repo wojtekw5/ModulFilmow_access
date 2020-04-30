@@ -256,6 +256,7 @@
             this.buttonDeleteMovie.TabIndex = 14;
             this.buttonDeleteMovie.Text = "Delete movie";
             this.buttonDeleteMovie.UseVisualStyleBackColor = true;
+            this.buttonDeleteMovie.Click += new System.EventHandler(this.buttonDeleteMovie_Click);
             // 
             // buttonEditMovie
             // 

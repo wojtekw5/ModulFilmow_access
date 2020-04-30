@@ -303,6 +303,31 @@ namespace ClassLibrary
             return idmovie;
         }
 
+        public static void DeleteMovie(int idMovie)
+        {
+            listMovie.Clear();
+
+            string strSQL = "DELETE * FROM Movie Where Movie_ID=" + idMovie;
+
+            OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
+
+            OleDbCommand command = new OleDbCommand(strSQL, connection);
+
+            try
+            {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                connection.Close();
+            }
+
+
+
+        }
 
     }
 }
