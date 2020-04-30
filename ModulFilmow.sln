@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulFilmow", "ModulFilmow\ModulFilmow.csproj", "{EDDCF3F7-49EA-4B42-AAE3-8E4DF11FA393}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C0A6C36C-80D7-4FBC-8059-B79240FA7E2A}"
+	ProjectSection(SolutionItems) = preProject
+		ModulFilmow\bin\Debug\MySql.Data.dll = ModulFilmow\bin\Debug\MySql.Data.dll
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDDCF3F7-49EA-4B42-AAE3-8E4DF11FA393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDDCF3F7-49EA-4B42-AAE3-8E4DF11FA393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDDCF3F7-49EA-4B42-AAE3-8E4DF11FA393}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDDCF3F7-49EA-4B42-AAE3-8E4DF11FA393}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B53E0B9-AF3C-49C8-B616-502348317C78}
+	EndGlobalSection
+EndGlobal
