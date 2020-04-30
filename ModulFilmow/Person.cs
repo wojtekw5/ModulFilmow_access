@@ -23,7 +23,7 @@ namespace ClassLibrary
 
         public static List<Person> listPerson = new List<Person>();
 
-
+        public static Dictionary<int, Person> PersonMap = new Dictionary<int, Person>();
         public static List<Person> ListPerson
         {
             get
@@ -130,7 +130,7 @@ namespace ClassLibrary
             conn.Close();
         }
 
-        public static void DownloadPerson()
+        public static void getPerson()
         {
             listPerson.Clear();
 
@@ -150,6 +150,7 @@ namespace ClassLibrary
                     
                     Person p = new Person((int)reader[0], reader[1].ToString(), reader[2].ToString(), (DateTime)reader[3]);
                     ListPerson.Add(p);
+                    PersonMap.Add(p.id, p);
 
                 }
             }

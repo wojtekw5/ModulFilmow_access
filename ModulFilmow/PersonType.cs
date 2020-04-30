@@ -80,7 +80,7 @@ namespace ClassLibrary
             conn.Close();
         }
 
-        public static void DownloadPersonTYPE()
+        public static void getPersonTYPE()
         {
             listPersonType.Clear();
 
@@ -101,6 +101,7 @@ namespace ClassLibrary
                     pt.id = (int)reader[0];
                     pt.name = reader[1].ToString();
                     ListPersonType.Add(pt);
+                    MapPersonType.Add(pt.id, pt);
 
                 }
             }

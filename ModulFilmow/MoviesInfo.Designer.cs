@@ -35,15 +35,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.labelMovieState = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.labelMovieLength = new System.Windows.Forms.Label();
             this.groupBo = new System.Windows.Forms.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.labelVR = new System.Windows.Forms.Label();
+            this.label3D = new System.Windows.Forms.Label();
+            this.label2D = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxDescription = new System.Windows.Forms.RichTextBox();
             this.Description = new System.Windows.Forms.Label();
             this.dataGridViewPeoplesInInformation = new System.Windows.Forms.DataGridView();
             this.Person = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -119,20 +119,20 @@
             this.labelMovieState.TabIndex = 6;
             this.labelMovieState.Text = "Title";
             // 
-            // label8
+            // labelMovieLength
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(108, 100);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(27, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Title";
+            this.labelMovieLength.AutoSize = true;
+            this.labelMovieLength.Location = new System.Drawing.Point(108, 100);
+            this.labelMovieLength.Name = "labelMovieLength";
+            this.labelMovieLength.Size = new System.Drawing.Size(27, 13);
+            this.labelMovieLength.TabIndex = 7;
+            this.labelMovieLength.Text = "Title";
             // 
             // groupBo
             // 
-            this.groupBo.Controls.Add(this.label15);
-            this.groupBo.Controls.Add(this.label14);
-            this.groupBo.Controls.Add(this.label13);
+            this.groupBo.Controls.Add(this.labelVR);
+            this.groupBo.Controls.Add(this.label3D);
+            this.groupBo.Controls.Add(this.label2D);
             this.groupBo.Controls.Add(this.label12);
             this.groupBo.Controls.Add(this.label11);
             this.groupBo.Controls.Add(this.label10);
@@ -143,32 +143,32 @@
             this.groupBo.TabStop = false;
             this.groupBo.Text = "Movie formats";
             // 
-            // label15
+            // labelVR
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(44, 65);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(27, 13);
-            this.label15.TabIndex = 14;
-            this.label15.Text = "Title";
+            this.labelVR.AutoSize = true;
+            this.labelVR.Location = new System.Drawing.Point(44, 65);
+            this.labelVR.Name = "labelVR";
+            this.labelVR.Size = new System.Drawing.Size(19, 13);
+            this.labelVR.TabIndex = 14;
+            this.labelVR.Text = "no";
             // 
-            // label14
+            // label3D
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(44, 39);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(27, 13);
-            this.label14.TabIndex = 13;
-            this.label14.Text = "Title";
+            this.label3D.AutoSize = true;
+            this.label3D.Location = new System.Drawing.Point(44, 39);
+            this.label3D.Name = "label3D";
+            this.label3D.Size = new System.Drawing.Size(19, 13);
+            this.label3D.TabIndex = 13;
+            this.label3D.Text = "no";
             // 
-            // label13
+            // label2D
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(44, 16);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(27, 13);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "Title";
+            this.label2D.AutoSize = true;
+            this.label2D.Location = new System.Drawing.Point(44, 16);
+            this.label2D.Name = "label2D";
+            this.label2D.Size = new System.Drawing.Size(19, 13);
+            this.label2D.TabIndex = 10;
+            this.label2D.Text = "no";
             // 
             // label12
             // 
@@ -197,13 +197,13 @@
             this.label10.TabIndex = 10;
             this.label10.Text = "2D:";
             // 
-            // richTextBox1
+            // richTextBoxDescription
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(282, 25);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(232, 192);
-            this.richTextBox1.TabIndex = 10;
-            this.richTextBox1.Text = "";
+            this.richTextBoxDescription.Location = new System.Drawing.Point(282, 25);
+            this.richTextBoxDescription.Name = "richTextBoxDescription";
+            this.richTextBoxDescription.Size = new System.Drawing.Size(232, 192);
+            this.richTextBoxDescription.TabIndex = 10;
+            this.richTextBoxDescription.Text = "";
             // 
             // Description
             // 
@@ -276,9 +276,9 @@
             this.Controls.Add(this.buttonDeleteMovie);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Description);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.richTextBoxDescription);
             this.Controls.Add(this.groupBo);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.labelMovieLength);
             this.Controls.Add(this.labelMovieState);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -307,15 +307,15 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelMovieState;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelMovieLength;
         private System.Windows.Forms.GroupBox groupBo;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label labelVR;
+        private System.Windows.Forms.Label label3D;
+        private System.Windows.Forms.Label label2D;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxDescription;
         private System.Windows.Forms.Label Description;
         private System.Windows.Forms.DataGridView dataGridViewPeoplesInInformation;
         private System.Windows.Forms.DataGridViewTextBoxColumn Person;

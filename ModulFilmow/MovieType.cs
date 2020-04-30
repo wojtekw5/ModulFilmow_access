@@ -64,7 +64,7 @@ namespace ClassLibrary
         }
 
 
-        public static void DownloadMovieType()
+        public static void getMovieType()
         {
             ListMovieType.Clear();
 

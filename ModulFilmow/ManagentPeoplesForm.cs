@@ -40,8 +40,8 @@ namespace ModulFilmow
 
             else { MessageBox.Show("Please fill in the data in the form!");  }
 
-            PersonType.DownloadPersonTYPE();
-            Person.DownloadPerson();
+            //PersonType.getPersonTYPE();
+            //Person.getPerson();
 
             refresh();
         }
@@ -60,8 +60,8 @@ namespace ModulFilmow
         void refresh()
         {
             listBoxRoles.Items.Clear();
-            PersonType.DownloadPersonTYPE();
-            Person.DownloadPerson();
+            //PersonType.getPersonTYPE();
+            //Person.getPerson();
 
             foreach (PersonType pt in PersonType.listPersonType)
             {

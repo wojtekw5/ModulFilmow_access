@@ -57,6 +57,21 @@ namespace ModulFilmow
         }
 
 
+        public MoviePerson(int id, Movie movie, Person person, PersonType personType)
+        {
+            this.id = id;
+            this.movie = movie;
+            this.person = person;
+            this.personType = personType;
+        }
+
+        public MoviePerson(Person person, PersonType personType)
+        {
+            this.person = person;
+            this.personType = personType;
+        }
+
+
         //public static void addMoviePersons(List<MoviePerson> newListMoviePerson)
         //{
         //    foreach(MoviePerson mp in newListMoviePerson)
@@ -64,7 +79,7 @@ namespace ModulFilmow
         //        addMoviePerson(mp);
         //    }
         //}
-        public static void addMoviePerson(int idmovie, Person person, PersonType personType )
+        public static void addMoviePerson(int idmovie, Person person, PersonType personType)
         {
 
 
@@ -92,7 +107,36 @@ namespace ModulFilmow
             conn.Close();
         }
 
-        
+        public static List<MoviePerson> getMoviePerson(int idMovie)
+        {
+            List<MoviePerson> listMoviePerson = new List<MoviePerson>();
 
+            string strSQL = "SELECT * FROM MoviePerson Where movie =" + idMovie;
+
+            OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
+
+            OleDbCommand command = new OleDbCommand(strSQL, connection);
+
+            try
+            {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    MoviePerson mp = new MoviePerson((int)reader[0], Movie.MovieMap[(int)reader[1]], Person.PersonMap[(int)reader[2]], PersonType.MapPersonType[(int)reader[3]]);
+                    listMoviePerson.Add(mp);
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                connection.Close();
+            }
+
+            return listMoviePerson;
+        }
     }
 }

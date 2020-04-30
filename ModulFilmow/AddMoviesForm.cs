@@ -80,10 +80,10 @@ namespace ModulFilmow
         private void formAddMovies_Load(object sender, EventArgs e)
         {
             // if mode add 
-            //PersonType.DownloadPersonTYPE();
-            //Person.DownloadPerson();
-            //MovieState.DownloadMovieState();
-            //MovieType.DownloadMovieType();
+            //PersonType.getPersonTYPE();
+            //Person.getPerson();
+            //MovieState.getMovieState();
+            //MovieType.getMovieType();
 
 
             //edit movie
@@ -138,10 +138,7 @@ namespace ModulFilmow
             Person person = (Person)comboBoxSelectPerson.SelectedItem;
             PersonType persontype = (PersonType)comboBoxSelectRole.SelectedItem;
 
-            MoviePerson mp = new MoviePerson();
-            mp.Person = person;
-            mp.PersonType = persontype;
-
+            MoviePerson mp = new MoviePerson(person, persontype) ;
             ListPersonToMovie.Add(mp);
 
             refreshpeoplebutton();

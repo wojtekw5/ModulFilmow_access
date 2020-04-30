@@ -61,7 +61,7 @@ namespace ClassLibrary
             return name;
         }
 
-        public static void DownloadMovieState()
+        public static void getMovieState()
         {
             ListMovieState.Clear();
 

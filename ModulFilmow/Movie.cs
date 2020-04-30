@@ -46,6 +46,7 @@ namespace ClassLibrary
 
         public static List<Movie> listMovie = new List<Movie>();
 
+        public static Dictionary<int, Movie> MovieMap = new Dictionary<int, Movie>();
 
         public static List<Movie> ListMovie
         {
@@ -199,7 +200,7 @@ namespace ClassLibrary
 
             OleDbConnection conn = new OleDbConnection(MainForm.connectionString);
 
-            int idmovie = 0;
+           
 
             try
             {
@@ -235,7 +236,7 @@ namespace ClassLibrary
         }
 
 
-        public static void DownloadMovie()
+        public static void getMovies()
         {
             ListMovie.Clear();
 
@@ -255,6 +256,7 @@ namespace ClassLibrary
 
                     Movie m = new Movie((int)reader[0], reader[1].ToString(), reader[2].ToString(), MovieState.MovieStateMap[(int)reader[3]], MovieType.MovieTypeMap[(int)reader[4]], (int)reader[5], (bool)reader[6], (bool)reader[7], (bool)reader[8]);
                     ListMovie.Add(m);
+                    MovieMap.Add(m.id, m);
 
                 }
             }

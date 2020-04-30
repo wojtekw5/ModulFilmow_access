@@ -46,11 +46,11 @@ namespace ModulFilmow
 
         void refresh()
         {
-            PersonType.DownloadPersonTYPE();
-            Person.DownloadPerson();
-            MovieState.DownloadMovieState();
-            MovieType.DownloadMovieType();
-            Movie.DownloadMovie();
+            PersonType.getPersonTYPE();
+            Person.getPerson();
+            MovieState.getMovieState();
+            MovieType.getMovieType();
+            Movie.getMovies();
 
             dataGridViewMovies.Rows.Clear();
 
@@ -68,8 +68,7 @@ namespace ModulFilmow
 
         private void dataGridViewMovies_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(dataGridViewMovies.CurrentRow.Cells[2].FormattedValue.ToString());
-            int id = (int)dataGridViewMovies.CurrentRow.Cells[2].FormattedValue;
+            int id = (int)dataGridViewMovies.CurrentRow.Cells[2].Value;
             var formMovieInfo = new formMovieInfo(id);
             formMovieInfo.Show();
             
