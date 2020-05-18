@@ -74,19 +74,12 @@
     <Compile Include="MoviesInfo.Designer.cs">
       <DependentUpon>MoviesInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditInfo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditInfo.Designer.cs">
-      <DependentUpon>EditInfo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Movie.cs" />
     <Compile Include="MovieManager.cs" />
     <Compile Include="MoviePerson.cs" />
     <Compile Include="MovieState.cs" />
     <Compile Include="MovieType.cs" />
     <Compile Include="Person.cs" />
-    <Compile Include="PersonJob.cs" />
     <Compile Include="PersonType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,9 +94,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MoviesInfo.resx">
       <DependentUpon>MoviesInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditInfo.resx">
-      <DependentUpon>EditInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
