@@ -17,17 +17,12 @@ namespace ModulFilmow
         List<MoviePerson> ListPersonToMovie = new List<MoviePerson>();
 
         private int idMovie;
-        private int msID;
-        private int mtID;
 
         private static string Mode;
         public formAddMovies()
         {
             Mode = "ADD";
             idMovie = 0;
-            msID = 0;
-            mtID = 0;
-
             InitializeComponent();
         }
         public formAddMovies(int id)
@@ -367,21 +362,18 @@ namespace ModulFilmow
                 {
                     textBoxTitle.Text = reader[1].ToString();
                     richTextBoxDescription.Text = reader[2].ToString();
-                    msID = (int)reader[3];
 
                     foreach(MovieState ms in comboBoxMovieState.Items)
                     {
-                        if (ms.Id == msID)
+                        if (ms.Id == (int)reader[3])
                         {
                             comboBoxMovieState.SelectedItem = ms;  
                         }
                     }
 
-                    mtID = (int)reader[4];
-
                     foreach (MovieType mt in comboBoxMovieType.Items)
                     {
-                        if (mt.Id == mtID)
+                        if (mt.Id == (int)reader[4])
                         {
                             comboBoxMovieType.SelectedItem = mt;
                         }
@@ -456,8 +448,6 @@ namespace ModulFilmow
             }
 
             ListPersonToMovie.RemoveAt(idrm);
-
-            
 
             refreshpeoplebutton();
 
