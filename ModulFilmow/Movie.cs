@@ -13,8 +13,8 @@ namespace ClassLibrary
         string description;
         MovieState movieState;
         MovieType movieType;
-        TimeSpan movieTimeTS { get; set; }
-        int movieTime;
+        DateTime movieTime;
+       // int movieTime;
         bool flgVR;
         bool flg2D;
         bool flg3D;
@@ -24,15 +24,15 @@ namespace ClassLibrary
         public string Description { get => description; set => description = value; }
         public MovieState MovieState { get => movieState; set => movieState = value; }
         public MovieType MovieType { get => movieType; set => movieType = value; }
-        public TimeSpan MovieTimeTS { get => movieTimeTS; set => movieTimeTS = value; }
+        public DateTime MovieTime { get => movieTime; set => movieTime = value; }
 
-        public int MovieTime { get => movieTime; set => movieTime = value; }
+       // public int MovieTime { get => movieTime; set => movieTime = value; }
         public bool FlgVR { get => flgVR; set => flgVR = value; }
         public bool Flg2D { get => flg2D; set => flg2D = value; }
         public bool Flg3D { get => flg3D; set => flg3D = value; }
 
 
-        public Movie(int id, String title, String description, MovieState movieState, MovieType movieType, int movieTime, bool flgVR, bool flg2D, bool flg3D)
+        public Movie(int id, String title, String description, MovieState movieState, MovieType movieType, DateTime movieTime, bool flgVR, bool flg2D, bool flg3D)
         {
             this.id = id;
             this.title = title;
@@ -53,7 +53,7 @@ namespace ClassLibrary
             this.id = id;
         }
         
-        public static void addMovie(String Title, String Description, MovieState movieState, MovieType movieType, int MovieTime, bool FlgVR, bool Flg2D, bool Flg3D)
+        public static void addMovie(String Title, String Description, MovieState movieState, MovieType movieType, DateTime MovieTime, bool FlgVR, bool Flg2D, bool Flg3D)
         {
             String query = "INSERT INTO Movie(Movie_title, Movie_description, Movie_movieState, Movie_movieType, Movie_movieTime, Movie_flgVR, Movie_flg2D, Movie_flg3D) VALUES('" + Title + "', '" + Description + "','" + movieState.Id + "','" + movieType.Id + "','" + MovieTime + "'," + FlgVR.ToString() + "," + Flg2D.ToString() + "," + Flg3D.ToString() + ")";
 
@@ -102,7 +102,7 @@ namespace ClassLibrary
 
         }
 
-        public static void ModifyMovieInfo(int idMovie, String Title, String Description, MovieState movieState, MovieType movieType, int MovieTime, bool FlgVR, bool Flg2D, bool Flg3D)
+        public static void ModifyMovieInfo(int idMovie, String Title, String Description, MovieState movieState, MovieType movieType, DateTime MovieTime, bool FlgVR, bool Flg2D, bool Flg3D)
         {
             OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
             OleDbCommand command = connection.CreateCommand();

@@ -52,13 +52,14 @@ namespace ModulFilmow
             {
                 if (comboBoxMovieState.SelectedItem != null && comboBoxMovieType.SelectedItem != null)
                 {
-                    if (numericUpDownMovieLength.Value != 0)
-                    {
                         if (ListPersonToMovie.Count != 0)
                         {
                             if(Mode == "ADD")
                             {
-                                Movie.addMovie(textBoxTitle.Text, richTextBoxDescription.Text, state, type, (int)numericUpDownMovieLength.Value, checkBoxVR.Checked, checkBox2D.Checked, checkBox3D.Checked);
+                                DateTime d = dateTimePickerMovieLength.Value;
+                                DateTime lenght = new DateTime(d.Year, d.Month, d.Day, d.Hour, d.Minute, d.Second);
+
+                                Movie.addMovie(textBoxTitle.Text, richTextBoxDescription.Text, state, type, lenght, checkBoxVR.Checked, checkBox2D.Checked, checkBox3D.Checked);
                                 DownloadMovieID();
                                 foreach (MoviePerson mp in ListPersonToMovie)
                                 {
@@ -70,7 +71,10 @@ namespace ModulFilmow
 
                             if (Mode == "EDIT")
                             {
-                                Movie.ModifyMovieInfo(idMovie, textBoxTitle.Text, richTextBoxDescription.Text, state, type, (int)numericUpDownMovieLength.Value, checkBoxVR.Checked, checkBox2D.Checked, checkBox3D.Checked);
+                                DateTime d = dateTimePickerMovieLength.Value;
+                                DateTime lenght = new DateTime(d.Year, d.Month, d.Day, d.Hour, d.Minute, d.Second);
+
+                                Movie.ModifyMovieInfo(idMovie, textBoxTitle.Text, richTextBoxDescription.Text, state, type, lenght, checkBoxVR.Checked, checkBox2D.Checked, checkBox3D.Checked);
 
                             }
 
@@ -80,8 +84,7 @@ namespace ModulFilmow
                         }
                         else { MessageBox.Show("Please add people to this movie"); }
 
-                    }
-                    else { MessageBox.Show("Please fill in all the data in the form! chech"); }
+                    
                 }
                 else { MessageBox.Show("Please fill in all the data in the form! como"); }
 
@@ -117,7 +120,9 @@ namespace ModulFilmow
             dateTimePickerMovieLength.Format = DateTimePickerFormat.Custom;
             dateTimePickerMovieLength.CustomFormat = "HH:mm";
             dateTimePickerMovieLength.ShowUpDown = true;
-            //dateTimePickerMovieLength.Value = new DateTime(int year, );
+            dateTimePickerMovieLength.MinDate = DateTime.Parse("0:00:00");
+            dateTimePickerMovieLength.MaxDate = DateTime.Parse("5:00:00");
+            dateTimePickerMovieLength.Value= DateTime.Parse("0:00:00");
         }
 
         private void buttontech2_Click(object sender, EventArgs e)
@@ -136,6 +141,7 @@ namespace ModulFilmow
             
                 Person person = (Person)comboBoxSelectPerson.SelectedItem;
                 PersonType persontype = (PersonType)comboBoxSelectRole.SelectedItem;
+
 
                 if (ListPersonToMovie.Count == 0)
                 {
@@ -381,7 +387,7 @@ namespace ModulFilmow
                         }
                     }
 
-                    numericUpDownMovieLength.Value = (decimal)((int)reader[5]);
+                    dateTimePickerMovieLength.Value = (DateTime)reader[5];
 
                     if ((bool)reader[6]) { checkBoxVR.Checked = true; }
                     if ((bool)reader[7]) { checkBox2D.Checked = true; }
@@ -438,7 +444,7 @@ namespace ModulFilmow
 
             if (Mode == "EDIT")
             {
-                //MoviePerson.removeMoviePerson(id);
+                MoviePerson.DeleteMoviePersonEDIT(idMovie, id);
             }
 
             foreach (MoviePerson mp in ListPersonToMovie)
@@ -460,6 +466,15 @@ namespace ModulFilmow
         private void dataGridViewPeopleList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            DateTime d = dateTimePickerMovieLength.Value;
+            DateTime t = dateTimePickerMovieLength.Value;
+            DateTime lenght = new DateTime(d.Year, d.Month, d.Day, t.Hour, t.Minute, t.Second);
+
+            
         }
     }
 }

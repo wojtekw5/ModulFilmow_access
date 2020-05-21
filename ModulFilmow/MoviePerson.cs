@@ -78,5 +78,28 @@ namespace ModulFilmow
             connection.Close();
 
         }
+
+
+        public static void DeleteMoviePersonEDIT(int idMovie, int idperson)
+        {
+            string strSQL = "DELETE * FROM MoviePerson Where movie=" + idMovie + " AND person=" + idperson;
+
+            OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
+            OleDbCommand command = new OleDbCommand(strSQL, connection);
+
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                connection.Close();
+            }
+            connection.Close();
+
+        }
     }
 }

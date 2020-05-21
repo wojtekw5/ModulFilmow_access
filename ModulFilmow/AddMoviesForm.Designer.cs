@@ -37,7 +37,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxMovieState = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDownMovieLength = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBoxVR = new System.Windows.Forms.CheckBox();
             this.checkBox3D = new System.Windows.Forms.CheckBox();
@@ -57,7 +56,6 @@
             this.buttonAddMovie = new System.Windows.Forms.Button();
             this.buttonDeletePersonFromMovie = new System.Windows.Forms.Button();
             this.dateTimePickerMovieLength = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMovieLength)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPeopleList)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -145,17 +143,9 @@
             this.label5.Location = new System.Drawing.Point(264, 102);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(225, 20);
+            this.label5.Size = new System.Drawing.Size(151, 20);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Select movie length (minutes) :";
-            // 
-            // numericUpDownMovieLength
-            // 
-            this.numericUpDownMovieLength.Location = new System.Drawing.Point(268, 126);
-            this.numericUpDownMovieLength.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.numericUpDownMovieLength.Name = "numericUpDownMovieLength";
-            this.numericUpDownMovieLength.Size = new System.Drawing.Size(231, 26);
-            this.numericUpDownMovieLength.TabIndex = 11;
+            this.label5.Text = "Select movie length:";
             // 
             // groupBox1
             // 
@@ -355,17 +345,17 @@
             // dateTimePickerMovieLength
             // 
             this.dateTimePickerMovieLength.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerMovieLength.Location = new System.Drawing.Point(288, 638);
+            this.dateTimePickerMovieLength.Location = new System.Drawing.Point(268, 128);
             this.dateTimePickerMovieLength.Name = "dateTimePickerMovieLength";
             this.dateTimePickerMovieLength.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dateTimePickerMovieLength.Size = new System.Drawing.Size(200, 26);
+            this.dateTimePickerMovieLength.Size = new System.Drawing.Size(229, 26);
             this.dateTimePickerMovieLength.TabIndex = 19;
             // 
             // formAddMovies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.ClientSize = new System.Drawing.Size(1200, 599);
             this.Controls.Add(this.dateTimePickerMovieLength);
             this.Controls.Add(this.buttonDeletePersonFromMovie);
             this.Controls.Add(this.buttonAddMovie);
@@ -373,7 +363,6 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.numericUpDownMovieLength);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBoxMovieState);
             this.Controls.Add(this.label4);
@@ -386,7 +375,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "formAddMovies";
             this.Load += new System.EventHandler(this.formAddMovies_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMovieLength)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPeopleList)).EndInit();
@@ -409,7 +397,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxMovieState;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numericUpDownMovieLength;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBoxVR;
         private System.Windows.Forms.CheckBox checkBox3D;
