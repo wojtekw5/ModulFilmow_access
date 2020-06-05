@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,13 +22,46 @@ namespace ModulFilmow
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            
-            
+
+
         }
 
         private void dataGridViewPeopleList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        
+        private void buttontech_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void formManagementPeoplesAndRoles_Load(object sender, EventArgs e)
+        {
+            refreshPeople();
+            refreshRoles();
+
+            dateTimePickerDateBorn.Format = DateTimePickerFormat.Custom;
+            dateTimePickerDateBorn.CustomFormat = "dd:MMMM:yyyy";
+        }
+
+        
+        private void buttonAddPerson_Click(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(textBoxName.Text) && !String.IsNullOrEmpty(textBoxLastName.Text))
+            {
+                if (dateTimePickerDateBorn.Value < DateTime.Now)
+                {
+                    Person.addPerson(textBoxName.Text, textBoxLastName.Text, dateTimePickerDateBorn.Value);
+                }
+
+                else { MessageBox.Show("Please fill in all the data in the form!"); }
+            }
+
+            else { MessageBox.Show("Please fill in all the data in the form!"); }
+
+            refreshPeople();
         }
 
         private void buttonAddRole_Click(object sender, EventArgs e)
@@ -38,76 +72,17 @@ namespace ModulFilmow
                 textBoxRoleName.Text = "";
             }
 
-            else { MessageBox.Show("Please fill in the data in the form!");  }
+            else { MessageBox.Show("Please fill in the data in the form!"); }
 
-            PersonType.DownloadPersonTYPE();
-            Person.DownloadPerson();
+            refreshRoles();
 
-            refresh();
-        }
-
-        private void formManagementPeoplesAndRoles_Load(object sender, EventArgs e)
-        {
-           
-            refresh();
-
-            dateTimePickerDateBorn.Format = DateTimePickerFormat.Custom;
-            dateTimePickerDateBorn.CustomFormat = "dd:MMMM:yyyy";
-
-            
-        }
-
-        void refresh()
-        {
-            listBoxRoles.Items.Clear();
-            PersonType.DownloadPersonTYPE();
-            Person.DownloadPerson();
-
-            foreach (PersonType pt in PersonType.listPersonType)
-            {
-                listBoxRoles.Items.Add(pt);
-            }
-
-            dataGridViewPeopleList.Rows.Clear();
-
-            foreach (Person p in Person.ListPerson)
-            {
-                int w = dataGridViewPeopleList.Rows.Add(p.FirstName.ToString(), p.LastName.ToString(), p.BornDate.ToString("dd:MM:yyyy"), p.Id);
-                dataGridViewPeopleList.Rows[w].Tag = p;
-            }
-
-            textBoxName.Text = "";
-            textBoxLastName.Text = "";
-
-        }
-
-        private void buttonAddPerson_Click(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty(textBoxName.Text) && !String.IsNullOrEmpty(textBoxLastName.Text) )
-            {
-                if(dateTimePickerDateBorn.Value < DateTime.Now)
-                {
-                    Person.addPerson(textBoxName.Text, textBoxLastName.Text, dateTimePickerDateBorn.Value);
-                }
-
-                else { MessageBox.Show("Please fill in all the data in the form!");  }
-            }
-
-            else { MessageBox.Show("Please fill in all the data in the form!"); }
-
-            refresh();
-        }
-
-        private void buttontech_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void buttonDeleterole_Click(object sender, EventArgs e)
         {
             PersonType pt = (PersonType)listBoxRoles.SelectedItem;
             PersonType.DeletePersonTYPE(pt.Id);
-            refresh();
+            refreshRoles();
 
         }
 
@@ -116,8 +91,86 @@ namespace ModulFilmow
             int idperson = 0;
             idperson = (int)dataGridViewPeopleList.CurrentRow.Cells[3].Value;
             Person.DeletePerson(idperson);
-            refresh();
-            
+            refreshPeople();
+
         }
+
+        void refreshPeople()
+        {
+            dataGridViewPeopleList.Rows.Clear();
+            textBoxName.Text = "";
+            textBoxLastName.Text = "";
+            getPerson();
+        }
+        void refreshRoles()
+        {
+            textBoxRoleName.Text = "";
+            listBoxRoles.Items.Clear();
+            getPersonTYPE();
+        }
+
+        public void getPersonTYPE()
+        {
+
+            string strSQL = "SELECT * FROM PersonTYPE";
+
+            OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
+            OleDbCommand command = new OleDbCommand(strSQL, connection);
+
+            try
+            {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    PersonType pt = new PersonType();
+                    pt.Id = (int)reader[0];
+                    pt.Name = reader[1].ToString();
+                    listBoxRoles.Items.Add(pt);
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                connection.Close();
+            }
+            connection.Close();
+
+        }
+
+        public void getPerson()
+        {
+            string strSQL = "SELECT * FROM Person";
+
+            OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
+            OleDbCommand command = new OleDbCommand(strSQL, connection);
+
+            try
+            {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Person p = new Person((int)reader[0], reader[1].ToString(), reader[2].ToString(), (DateTime)reader[3]);
+                    int w = dataGridViewPeopleList.Rows.Add(p.FirstName.ToString(), p.LastName.ToString(), p.BornDate.ToString("dd:MM:yyyy"), p.Id);
+                    dataGridViewPeopleList.Rows[w].Tag = p;
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                connection.Close();
+            }
+            connection.Close();
+
+        }
+
+        
     }
 }

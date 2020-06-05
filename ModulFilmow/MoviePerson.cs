@@ -17,82 +17,89 @@ namespace ModulFilmow
         Person person;
         PersonType personType;
 
-        public Movie Movie
-        {
-            get
-            {
-                return movie;
-            }
+        public int Id { get => id; set => id = value; }
+        public Movie Movie { get => movie; set => movie = value; }
+        public Person Person { get => person; set => person = value; }
+        public PersonType PersonType { get => personType; set => personType = value; }   
 
-            set
-            {
-                movie = value;
-            }
+        public MoviePerson(int id, Movie movie, Person person, PersonType personType)
+        {
+            this.id = id;
+            this.movie = movie;
+            this.person = person;
+            this.personType = personType;
         }
 
-        public Person Person
+        public MoviePerson(Person person, PersonType personType)
         {
-            get
-            {
-                return person;
-            }
-
-            set
-            {
-                person = value;
-            }
+            this.person = person;
+            this.personType = personType;
         }
 
-        public PersonType PersonType
+        public static void addMoviePerson(int idmovie, Person person, PersonType personType)
         {
-            get
-            {
-                return personType;
-            }
-
-            set
-            {
-                personType = value;
-            }
-        }
-
-
-        //public static void addMoviePersons(List<MoviePerson> newListMoviePerson)
-        //{
-        //    foreach(MoviePerson mp in newListMoviePerson)
-        //    {
-        //        addMoviePerson(mp);
-        //    }
-        //}
-        public static void addMoviePerson(int idmovie, Person person, PersonType personType )
-        {
-
+            String query = "INSERT INTO MoviePerson(movie, person, role) VALUES('" + idmovie + "', '" + person.Id + "', '" + personType.Id + "')";
 
             OleDbConnection conn = new OleDbConnection(MainForm.connectionString);
+            OleDbCommand cmd = new OleDbCommand(query, conn);
 
             try
             {
                 conn.Open();
-                String query = "INSERT INTO MoviePerson(movie, person, role) VALUES('" + idmovie + "', '" + person.Id + "', '" + personType.Id + "')";
-
-                OleDbCommand cmd = new OleDbCommand(query, conn);
                 cmd.ExecuteNonQuery();
-                conn.Close();
-
-
-
             }
 
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Console.WriteLine(ex.Message);
+                conn.Close();
 
             }
             conn.Close();
         }
+        public static void DeleteMoviePerson(int idMovie)
+        {
+            string strSQL = "DELETE * FROM MoviePerson Where movie=" + idMovie;
 
-        
+            OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
+            OleDbCommand command = new OleDbCommand(strSQL, connection);
 
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                connection.Close();
+            }
+            connection.Close();
+
+        }
+
+
+        public static void DeleteMoviePersonEDIT(int idMovie, int idperson)
+        {
+            string strSQL = "DELETE * FROM MoviePerson Where movie=" + idMovie + " AND person=" + idperson;
+
+            OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
+            OleDbCommand command = new OleDbCommand(strSQL, connection);
+
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                connection.Close();
+            }
+            connection.Close();
+
+        }
     }
 }

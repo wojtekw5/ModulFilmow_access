@@ -77,6 +77,7 @@
             this.dataGridViewMovies.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewMovies.Size = new System.Drawing.Size(464, 236);
             this.dataGridViewMovies.TabIndex = 0;
+            this.dataGridViewMovies.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridViewMovies.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridViewMovies.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMovies_CellContentDoubleClick);
             // 
@@ -84,11 +85,13 @@
             // 
             this.titlemovie.HeaderText = "Title";
             this.titlemovie.Name = "titlemovie";
+            this.titlemovie.ReadOnly = true;
             // 
             // descriptionmovie
             // 
             this.descriptionmovie.HeaderText = "Description";
             this.descriptionmovie.Name = "descriptionmovie";
+            this.descriptionmovie.ReadOnly = true;
             this.descriptionmovie.Width = 320;
             // 
             // movieid

@@ -8,43 +8,12 @@ namespace ClassLibrary
 {
     public class PersonType
     {
-        int id { get; set; }
-        private string name { get; set; } //nazwa wykonywanej roli w filmie, aktor itp
+        int id;
+        string name;
 
-        public static List<PersonType> listPersonType = new List<PersonType>();
-
-        public static Dictionary<int, PersonType> MapPersonType = new Dictionary<int, PersonType>();
-
-        //public PersonType(string n)
-        //{
-        //    name = n;
-        //}
-
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-            }
-        }
-
-        public static List<PersonType> ListPersonType
-        {
-            get
-            {
-                return listPersonType;
-            }
-        }
-
-        public string toString()
-        {
-            return this.name;
-        }
+        public int Id { get => id; set => id = value; }
+        
+        public string Name { get => name; set => name = value; }
 
         public override string ToString()
         {
@@ -54,20 +23,15 @@ namespace ClassLibrary
 
         public static void addPersonType(String name)
         {
-
+            String query = "INSERT INTO PersonType(personTYPE_NAME) VALUES('" + name + "')";
 
             OleDbConnection conn = new OleDbConnection(MainForm.connectionString);
+            OleDbCommand cmd = new OleDbCommand(query, conn);
 
             try
             {
                 conn.Open();
-                String query = "INSERT INTO PersonType(personTYPE_NAME) VALUES('" + name + "')";
-
-                OleDbCommand cmd = new OleDbCommand(query, conn);
                 cmd.ExecuteNonQuery();
-                conn.Close();
-
-
 
             }
 
@@ -75,61 +39,23 @@ namespace ClassLibrary
             {
                 MessageBox.Show(ex.Message);
                 Console.WriteLine(ex.Message);
-                
+                conn.Close();
+
             }
             conn.Close();
         }
 
-        public static void DownloadPersonTYPE()
-        {
-            listPersonType.Clear();
-
-            string strSQL = "SELECT * FROM PersonTYPE";
-
-            OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
-
-            OleDbCommand command = new OleDbCommand(strSQL, connection);
-
-            try
-            {
-                connection.Open();
-                OleDbDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    PersonType pt = new PersonType();
-                    pt.id = (int)reader[0];
-                    pt.name = reader[1].ToString();
-                    ListPersonType.Add(pt);
-
-                }
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                connection.Close();
-            }
-
-
-
-
-        }
-
         public static void DeletePersonTYPE(int idPersonTYPE)
         {
-            listPersonType.Clear();
-
             string strSQL = "DELETE * FROM PersonTYPE Where personTYPE_ID=" + idPersonTYPE;
 
             OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
-
             OleDbCommand command = new OleDbCommand(strSQL, connection);
 
             try
             {
                 connection.Open();
-                OleDbDataReader reader = command.ExecuteReader();
+                command.ExecuteNonQuery();
             }
 
             catch (Exception ex)
@@ -137,7 +63,7 @@ namespace ClassLibrary
                 MessageBox.Show(ex.Message);
                 connection.Close();
             }
-
+            connection.Close();
 
 
         }

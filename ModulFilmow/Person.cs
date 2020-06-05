@@ -9,79 +9,19 @@ namespace ClassLibrary
 {
     public class Person
     {
-         int id { get; set; }
-         string firstName { get; set; }
-         string lastName { get; set; }
-         DateTime bornDate { get; set; }
+        int id;
+        string firstName;
+        string lastName;
+        DateTime bornDate;
 
-        //public Person(string f, string l, DateTime b)
-        //{
-        //    firstName = f;
-        //    lastName = l;
-        //    bornDate = b;
-        //}
+        public int Id { get => id; set => id = value; }
 
-        public static List<Person> listPerson = new List<Person>();
+        public string FirstName { get => firstName; set => firstName = value; }
 
+        public string LastName { get => lastName; set => lastName = value; }
 
-        public static List<Person> ListPerson
-        {
-            get
-            {
-                return listPerson;
-            }
-        }
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-            }
-        }
-        public string FirstName
-        {
-            get
-            {
-                return firstName;
-            }
-
-            set
-            {
-                firstName = value;
-            }
-        }
-
-        public string LastName
-        {
-            get
-            {
-                return lastName;
-            }
-
-            set
-            {
-                lastName = value;
-            }
-        }
-
-
-        public DateTime BornDate
-        {
-            get
-            {
-                return bornDate;
-            }
-
-            set
-            {
-                bornDate = value;
-            }
-        }
+        public DateTime BornDate { get => bornDate; set => bornDate = value; }
+        
 
         public override string ToString()
         {
@@ -96,86 +36,47 @@ namespace ClassLibrary
             this.lastName = lastName;
             this.bornDate = bornDate;
         }
-
-        public string toString()
+        public Person(int id, string firstName, string lastName)
         {
-            return this.firstName + " " + this.lastName;
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
         }
 
         public static void addPerson(String firstName, String lastName, DateTime bornDate)
         {
-
+            String query = "INSERT INTO Person(firstNAME, lastNAME, bornDate) VALUES('" + firstName + "', '" + lastName + "', '" + bornDate + "')";
 
             OleDbConnection conn = new OleDbConnection(MainForm.connectionString);
+            OleDbCommand cmd = new OleDbCommand(query, conn);
 
             try
             {
                 conn.Open();
-                String query = "INSERT INTO Person(firstNAME, lastNAME, bornDate) VALUES('" + firstName + "', '" + lastName + "', '" + bornDate + "')";
-
-                OleDbCommand cmd = new OleDbCommand(query, conn);
                 cmd.ExecuteNonQuery();
-                conn.Close();
-
-
 
             }
 
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Console.WriteLine(ex.Message);
+                conn.Close();
 
             }
             conn.Close();
         }
 
-        public static void DownloadPerson()
-        {
-            listPerson.Clear();
-
-            string strSQL = "SELECT * FROM Person";
-
-            OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
-
-            OleDbCommand command = new OleDbCommand(strSQL, connection);
-
-            try
-            {
-                connection.Open();
-                OleDbDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    
-                    Person p = new Person((int)reader[0], reader[1].ToString(), reader[2].ToString(), (DateTime)reader[3]);
-                    ListPerson.Add(p);
-
-                }
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                connection.Close();
-            }
-
-        }
-
         public static void DeletePerson(int idPersonTYPE)
         {
-            listPerson.Clear();
-
             string strSQL = "DELETE * FROM Person Where person_ID=" + idPersonTYPE;
 
             OleDbConnection connection = new OleDbConnection(MainForm.connectionString);
-
             OleDbCommand command = new OleDbCommand(strSQL, connection);
 
             try
             {
                 connection.Open();
-                OleDbDataReader reader = command.ExecuteReader();
+                command.ExecuteNonQuery();
             }
 
             catch (Exception ex)
@@ -184,7 +85,7 @@ namespace ClassLibrary
                 connection.Close();
             }
 
-
+            connection.Close();
 
         }
 
