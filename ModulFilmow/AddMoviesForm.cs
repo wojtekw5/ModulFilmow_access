@@ -43,48 +43,51 @@ namespace ModulFilmow
             MovieState state = (MovieState)comboBoxMovieState.SelectedItem;
             MovieType type = (MovieType)comboBoxMovieType.SelectedItem;
 
-            if (!String.IsNullOrEmpty(textBoxTitle.Text) && !String.IsNullOrEmpty(richTextBoxDescription.Text))
+            if (String.IsNullOrEmpty(textBoxTitle.Text) || String.IsNullOrEmpty(richTextBoxDescription.Text))
             {
-                if (comboBoxMovieState.SelectedItem != null && comboBoxMovieType.SelectedItem != null)
-                {
-                        if (ListPersonToMovie.Count != 0)
+                MessageBox.Show("Please fill in all the data in the form! stringis null");
+                return;
+            }
+
+            if (comboBoxMovieState.SelectedItem != null && comboBoxMovieType.SelectedItem != null)
+            {
+                    if (ListPersonToMovie.Count != 0)
+                    {
+                        if(Mode == "ADD")
                         {
-                            if(Mode == "ADD")
+                            DateTime d = dateTimePickerMovieLength.Value;
+                            DateTime lenght = new DateTime(d.Year, d.Month, d.Day, d.Hour, d.Minute, d.Second);
+
+                            Movie.addMovie(textBoxTitle.Text, richTextBoxDescription.Text, state, type, lenght, checkBoxVR.Checked, checkBox2D.Checked, checkBox3D.Checked);
+                            DownloadMovieID();
+                            foreach (MoviePerson mp in ListPersonToMovie)
                             {
-                                DateTime d = dateTimePickerMovieLength.Value;
-                                DateTime lenght = new DateTime(d.Year, d.Month, d.Day, d.Hour, d.Minute, d.Second);
-
-                                Movie.addMovie(textBoxTitle.Text, richTextBoxDescription.Text, state, type, lenght, checkBoxVR.Checked, checkBox2D.Checked, checkBox3D.Checked);
-                                DownloadMovieID();
-                                foreach (MoviePerson mp in ListPersonToMovie)
-                                {
-                                    MoviePerson.addMoviePerson(idMovie, mp.Person, mp.PersonType);
-
-                                }
+                                MoviePerson.addMoviePerson(idMovie, mp.Person, mp.PersonType);
 
                             }
-
-                            if (Mode == "EDIT")
-                            {
-                                DateTime d = dateTimePickerMovieLength.Value;
-                                DateTime lenght = new DateTime(d.Year, d.Month, d.Day, d.Hour, d.Minute, d.Second);
-
-                                Movie.ModifyMovieInfo(idMovie, textBoxTitle.Text, richTextBoxDescription.Text, state, type, lenght, checkBoxVR.Checked, checkBox2D.Checked, checkBox3D.Checked);
-
-                            }
-
-                            this.Close();
-
 
                         }
-                        else { MessageBox.Show("Please add people to this movie"); }
+
+                        if (Mode == "EDIT")
+                        {
+                            DateTime d = dateTimePickerMovieLength.Value;
+                            DateTime lenght = new DateTime(d.Year, d.Month, d.Day, d.Hour, d.Minute, d.Second);
+
+                            Movie.ModifyMovieInfo(idMovie, textBoxTitle.Text, richTextBoxDescription.Text, state, type, lenght, checkBoxVR.Checked, checkBox2D.Checked, checkBox3D.Checked);
+
+                        }
+
+                        this.Close();
+
+
+                    }
+                    else { MessageBox.Show("Please add people to this movie"); }
 
                     
-                }
-                else { MessageBox.Show("Please fill in all the data in the form! como"); }
-
             }
-            else { MessageBox.Show("Please fill in all the data in the form! stringis null"); }
+            else { MessageBox.Show("Please fill in all the data in the form! como"); }
+
+           
 
         }
 
@@ -103,7 +106,7 @@ namespace ModulFilmow
 
             if(Mode == "EDIT")
             {
-                buttonAddMovie.Text = "Edit Movie";
+                buttonAddMovie.Text = "Save Movie";
                 this.Text = "Editing Movie";
                 getMovieInfo(idMovie);
                 getMoviePerson();
@@ -142,10 +145,11 @@ namespace ModulFilmow
                 {
                     MoviePerson mp = new MoviePerson(person, persontype);
                     ListPersonToMovie.Add(mp);
+
                     if (Mode == "EDIT")
                     {
-                    MoviePerson.addMoviePerson(idMovie, mp.Person, mp.PersonType);
-                }
+                         MoviePerson.addMoviePerson(idMovie, mp.Person, mp.PersonType);
+                    }
                 }
                 else
                 {
@@ -460,11 +464,7 @@ namespace ModulFilmow
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            DateTime d = dateTimePickerMovieLength.Value;
-            DateTime t = dateTimePickerMovieLength.Value;
-            DateTime lenght = new DateTime(d.Year, d.Month, d.Day, t.Hour, t.Minute, t.Second);
-
-            
+  
         }
     }
 }

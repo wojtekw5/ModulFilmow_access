@@ -32,11 +32,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewMovies = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonAddMovie = new System.Windows.Forms.Button();
             this.titlemovie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionmovie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.movieid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonAddMovie = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovies)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -77,8 +77,28 @@
             this.dataGridViewMovies.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewMovies.Size = new System.Drawing.Size(464, 236);
             this.dataGridViewMovies.TabIndex = 0;
+            this.dataGridViewMovies.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridViewMovies.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridViewMovies.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMovies_CellContentDoubleClick);
+            // 
+            // titlemovie
+            // 
+            this.titlemovie.HeaderText = "Title";
+            this.titlemovie.Name = "titlemovie";
+            this.titlemovie.ReadOnly = true;
+            // 
+            // descriptionmovie
+            // 
+            this.descriptionmovie.HeaderText = "Description";
+            this.descriptionmovie.Name = "descriptionmovie";
+            this.descriptionmovie.ReadOnly = true;
+            this.descriptionmovie.Width = 320;
+            // 
+            // movieid
+            // 
+            this.movieid.HeaderText = "ID";
+            this.movieid.Name = "movieid";
+            this.movieid.Visible = false;
             // 
             // groupBox1
             // 
@@ -102,25 +122,6 @@
             this.buttonAddMovie.Text = "Add movie";
             this.buttonAddMovie.UseVisualStyleBackColor = true;
             this.buttonAddMovie.Click += new System.EventHandler(this.buttonAddMovie_Click);
-            // 
-            // titlemovie
-            // 
-            this.titlemovie.HeaderText = "Title";
-            this.titlemovie.Name = "titlemovie";
-            this.titlemovie.ReadOnly = true;
-            // 
-            // descriptionmovie
-            // 
-            this.descriptionmovie.HeaderText = "Description";
-            this.descriptionmovie.Name = "descriptionmovie";
-            this.descriptionmovie.ReadOnly = true;
-            this.descriptionmovie.Width = 320;
-            // 
-            // movieid
-            // 
-            this.movieid.HeaderText = "ID";
-            this.movieid.Name = "movieid";
-            this.movieid.Visible = false;
             // 
             // MainForm
             // 

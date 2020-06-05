@@ -40,8 +40,8 @@ namespace ModulFilmow
 
         private void buttonDeleteMovie_Click(object sender, EventArgs e)
         {
-            Movie.DeleteMovie(idMovie);
             MoviePerson.DeleteMoviePerson(idMovie);
+            Movie.DeleteMovie(idMovie);
             this.Close();
         }
 

@@ -69,7 +69,7 @@ namespace ModulFilmow
                 {
 
                     Movie m = new Movie(reader[1].ToString(), reader[2].ToString(), (int)reader[0]);
-                    int w = dataGridViewMovies.Rows.Add(m.Title.ToString(), m.Description.ToString(), m.Id);
+                    int w = dataGridViewMovies.Rows.Add(m.Title.ToString(), m.Description.ToString(), m.Id); // obj tbl
                     dataGridViewMovies.Rows[w].Tag = m;
 
                 }
